@@ -57,11 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->send();
 
             $sent = true;
-
         } catch (Exception $e) {
 
             $errors[] = $mail->ErrorInfo;
-
         }
     }
 }
@@ -73,12 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php if ($sent) : ?>
     <p>Message sent.</p>
-<?php else: ?>
+<?php else : ?>
 
-    <?php if (! empty($errors)) : ?>
+    <?php if (!empty($errors)) : ?>
         <ul>
             <?php foreach ($errors as $error) : ?>
-                <li><?= $error ?></li>    
+                <li><?= $error ?></li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
@@ -98,6 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
             <label for="message">Message</label>
             <textarea class="form-control" name="message" id="message" placeholder="Message"><?= htmlspecialchars($message) ?></textarea>
+        </div>
+        <br><br>
+
+        <div>
+            <em>You may encounter an STMP error due to configuration mismatch. Don't sweat it!</em>
         </div>
 
         <button class="btn">Send</button>
